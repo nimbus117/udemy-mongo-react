@@ -27,22 +27,22 @@ class AuthPage extends Component {
         </section>
         <form
           className="auth__form"
-          onSubmit={event =>
+          onSubmit={(event) =>
             this.props.onAuth(event, {
               email: this.state.email,
-              password: this.state.password
+              password: this.state.password,
             })
           }
         >
           <Input
             label="E-Mail"
             config={{ type: 'email' }}
-            onChange={event => this.inputChangeHandler(event, 'email')}
+            onChange={(event) => this.inputChangeHandler(event, 'email')}
           />
           <Input
             label="Password"
             config={{ type: 'password' }}
-            onChange={event => this.inputChangeHandler(event, 'password')}
+            onChange={(event) => this.inputChangeHandler(event, 'password')}
           />
           <Button type="submit">{submitButtonText}</Button>
         </form>

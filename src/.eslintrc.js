@@ -1,5 +1,6 @@
 module.exports = {
   root: true,
+  parser: 'babel-eslint',
   env: {
     browser: true,
     commonjs: true,
@@ -22,10 +23,12 @@ module.exports = {
   rules: {
     'prettier/prettier': 'warn',
     'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx'] }],
+    'react/prop-types': 'off',
+    'no-console': 'off',
   },
   settings: {
     react: {
-      version: 'detect',
+      version: '16.13.0',
     },
   },
 };

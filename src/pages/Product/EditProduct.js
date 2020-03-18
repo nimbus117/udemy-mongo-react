@@ -11,7 +11,7 @@ class ProductEditPage extends Component {
     title: '',
     price: '',
     imageUrl: '',
-    description: ''
+    description: '',
   };
 
   componentDidMount() {
@@ -19,17 +19,17 @@ class ProductEditPage extends Component {
     if (this.props.match.params.mode === 'edit') {
       axios
         .get('http://localhost:3100/products/' + this.props.match.params.id)
-        .then(productResponse => {
+        .then((productResponse) => {
           const product = productResponse.data;
           this.setState({
             isLoading: false,
             title: product.name,
             price: product.price.toString(),
             imageUrl: product.image,
-            description: product.description
+            description: product.description,
           });
         })
-        .catch(err => {
+        .catch((err) => {
           this.setState({ isLoading: false });
           console.log(err);
         });
@@ -38,7 +38,7 @@ class ProductEditPage extends Component {
     }
   }
 
-  editProductHandler = event => {
+  editProductHandler = (event) => {
     event.preventDefault();
     if (
       this.state.title.trim() === '' ||
@@ -53,27 +53,27 @@ class ProductEditPage extends Component {
       name: this.state.title,
       price: parseFloat(this.state.price),
       image: this.state.imageUrl,
-      description: this.state.description
+      description: this.state.description,
     };
     let request;
     if (this.props.match.params.mode === 'edit') {
       request = axios.patch(
         'http://localhost:3100/products/' + this.props.match.params.id,
-        productData
+        productData,
       );
     } else {
       request = axios.post('http://localhost:3100/products', productData);
     }
     request
-      .then(result => {
+      .then((result) => {
         this.setState({ isLoading: false });
         this.props.history.replace('/products');
       })
-      .catch(err => {
+      .catch((err) => {
         this.setState({ isLoading: false });
         console.log(err);
         this.props.onError(
-          'Editing or adding the product failed. Please try again later'
+          'Editing or adding the product failed. Please try again later',
         );
       });
   };
@@ -88,23 +88,23 @@ class ProductEditPage extends Component {
         <Input
           label="Title"
           config={{ type: 'text', value: this.state.title }}
-          onChange={event => this.inputChangeHandler(event, 'title')}
+          onChange={(event) => this.inputChangeHandler(event, 'title')}
         />
         <Input
           label="Price"
           config={{ type: 'number', value: this.state.price }}
-          onChange={event => this.inputChangeHandler(event, 'price')}
+          onChange={(event) => this.inputChangeHandler(event, 'price')}
         />
         <Input
           label="Image URL"
           config={{ type: 'text', value: this.state.imageUrl }}
-          onChange={event => this.inputChangeHandler(event, 'imageUrl')}
+          onChange={(event) => this.inputChangeHandler(event, 'imageUrl')}
         />
         <Input
           label="Description"
           elType="textarea"
           config={{ rows: '5', value: this.state.description }}
-          onChange={event => this.inputChangeHandler(event, 'description')}
+          onChange={(event) => this.inputChangeHandler(event, 'description')}
         />
         <Button type="submit">
           {this.props.match.params.mode === 'add'

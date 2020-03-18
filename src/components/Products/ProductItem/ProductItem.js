@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import './ProductItem.css';
 
-const productItem = props => (
+const productItem = (props) => (
   <article className="product-item">
     <div
       className="product-item__image"

@@ -2,7 +2,7 @@ import React from 'react';
 
 import './Input.css';
 
-const input = props => {
+const input = (props) => {
   let inputElement = <input {...props.config} onChange={props.onChange} />;
   if (props.elType === 'textarea') {
     inputElement = <textarea {...props.config} onChange={props.onChange} />;
